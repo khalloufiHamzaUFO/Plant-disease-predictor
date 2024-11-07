@@ -1,6 +1,6 @@
 # Disease Predictor
 
-A web app for heart disease prediction, diabetes prediction and breast cancer prediciton using Machine Learning based on the Kaggle Datasets. 
+The detection and classification of crop diseases is an essential use of DL, ML, and computer vision techniques in agriculture industries [1]. The aim is to develop algorithms and techniques based on images of leaves or other plant features that can automatically detect and classify agricultural plant diseases using Machine Learning based on the Kaggle Datasets. 
 
 ## Getting Started
 
