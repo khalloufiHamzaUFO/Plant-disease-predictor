@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Update Prevention</title>
+</head>
+<body>
+    <div id="db-wrapper">
+        <!-- Sidebar -->
+        <nav class="navbar-vertical navbar">
+            <div class="nav-scroller">
+                <a class="navbar-brand" href="/preventions/">
+                    <img src="{% static 'assets/images/brand/logo/logo-inverse.svg' %}" alt="Logo" />
+                </a>
+                <ul class="navbar-nav flex-column" id="sideNavbar">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/preventions/">All Preventions</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-content">
+            <div class="header">
+                <nav class="navbar-default navbar navbar-expand-lg">
+                    <a id="nav-toggle" href="#!"><i class="fe fe-menu"></i></a>
+                </nav>
+            </div>
+
+            <div class="container-fluid p-4">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="border-bottom pb-4 mb-4">
+                            <h1 class="mb-1 h2 font-weight-bold">Update Prevention</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="card rounded-lg">
+                            <div class="card-body">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="title">Prevention Name</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="{{ prevention.title }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" name="description" rows="4" required>{{ prevention.description }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date_created">Date Initiated</label>
+                                        <input type="date" class="form-control" id="date_created" name="date_created" value="{{ prevention.date_created|date:"Y-m-d" }}" required>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-success">Update Prevention</button>
+                                        <a href="{% url 'prevention_list' %}" class="btn btn-secondary">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+</html>

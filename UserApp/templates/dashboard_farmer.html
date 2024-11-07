@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon/favicon.ico' %}">
+
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/fonts/feather/feather.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dragula/dist/dragula.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/@mdi/font/css/materialdesignicons.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/prismjs/themes/prism.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dropzone/dist/dropzone.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/@yaireo/tagify/dist/tagify.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tippy.js/dist/tippy.css' %}" rel="stylesheet">
+
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+  <title>Dashboard | Geeks - Academy Admin Template</title>
+</head>
+
+<body>
+  <!-- Wrapper -->
+  <div id="db-wrapper">
+    <!-- Sidebar -->
+    {% include 'sidebarfarmer.html' %}
+    <!-- sidebar -->
+    <!-- Page Content -->
+    <div id="page-content">
+      <div class="header">
+        <!-- navbar -->
+        {% include 'navbar.html' %}
+      </div>
+      <!-- Page Header -->
+      <!-- Container fluid -->
+      <div class="container-fluid p-4">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+              <div class="border-bottom pb-4 mb-4 d-lg-flex justify-content-between align-items-center">
+                <div>
+                  <h1 class="mb-0 h2 font-weight-bold">Dashboard</h1>
+                </div>
+                <div class="d-flex">
+                  <div class="input-group mr-3">
+                    <input class="form-control flatpickr" type="text" placeholder="Select Date"
+                      aria-describedby="basic-addon2">
+                    <div class="input-group-append input-button">
+                      <span class="input-group-text text-muted" id="basic-addon2"><i class="fe fe-calendar"></i></span>
+                    </div>
+                  </div>
+                  <a href="#!" class="btn btn-primary">Setting</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+              <!-- Card -->
+              <div class="card mb-4">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
+                    <div>
+                      <span class="font-size-xs text-uppercase font-weight-semi-bold">Sales</span>
+                    </div>
+                    <div>
+                      <span class="fe fe-shopping-bag font-size-lg text-primary"></span>
+                    </div>
+                  </div>
+                  <h2 class="font-weight-bold mb-1">
+                    $10,800
+                  </h2>
+                  <span class="text-success font-weight-semi-bold"><i class="fe fe-trending-up mr-1"></i>+20.9$</span>
+                  <span class="ml-1 font-weight-medium">Number of sales</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+              <!-- Card -->
+              <div class="card mb-4">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
+                    <div>
+                      <span class="font-size-xs text-uppercase font-weight-semi-bold">Courses</span>
+                    </div>
+                    <div>
+                      <span class=" fe fe-book-open font-size-lg text-primary"></span>
+                    </div>
+                  </div>
+                  <h2 class="font-weight-bold mb-1">
+                    2,456
+                  </h2>
+                  <span class="text-danger font-weight-semi-bold">120+</span>
+                  <span class="ml-1 font-weight-medium">Number of pending</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+              <!-- Card -->
+              <div class="card mb-4">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
+                    <div>
+                      <span class="font-size-xs text-uppercase font-weight-semi-bold">Students</span>
+                    </div>
+                    <div>
+                      <span class=" fe fe-users font-size-lg text-primary"></span>
+                    </div>
+                  </div>
+                  <h2 class="font-weight-bold mb-1">
+                    1,22,456
+                  </h2>
+                  <span class="text-success font-weight-semi-bold"><i class="fe fe-trending-up mr-1"></i>+1200</span>
+                  <span class="ml-1 font-weight-medium">Students</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+              <!-- Card -->
+              <div class="card mb-4">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
+                    <div>
+                      <span class="font-size-xs text-uppercase font-weight-semi-bold">Instructor</span>
+                    </div>
+                    <div>
+                      <span class=" fe fe-user-check font-size-lg text-primary"></span>
+                    </div>
+                  </div>
+                  <h2 class="font-weight-bold mb-1">
+                    22,786
+                  </h2>
+                  <span class="text-success font-weight-semi-bold"><i class="fe fe-trending-up mr-1"></i>+200</span>
+                  <span class="ml-1 font-weight-medium">Instructor</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-8 col-lg-12 col-md-12 col-12">
+              <!-- Card -->
+              <div class="card mb-4">
+                <!-- Card header -->
+                <div class="card-header align-items-center card-header-height d-flex justify-content-between align-items-center">
+                  <div>
+                    <h4 class="mb-0">Earnings</h4>
+                  </div>
+                  <div>
+                    <div class="dropdown dropleft">
+                      <a class="text-muted text-decoration-none" href="#!" role="button" id="courseDropdown1"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fe fe-more-vertical"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="courseDropdown1">
+                        <span class="dropdown-header">Settings</span>
+                        <a class="dropdown-item" href="#!"><i
+                            class="fe fe-external-link dropdown-item-icon "></i>Export</a>
+                        <a class="dropdown-item" href="#!"><i class="fe fe-mail dropdown-item-icon "></i>Email
+                          Report</a>
+                        <a class="dropdown-item" href="#!"><i
+                            class="fe fe-download dropdown-item-icon "></i>Download</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <!-- Earning chart -->
+                  <div id="earning" class="apex-charts"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 col-md-12 col-12">
+              <!-- Card -->
+              <div class="card mb-4">
+                <!-- Card header -->
+                <div class="card-header align-items-center card-header-height  d-flex justify-content-between align-items-center">
+                  <div>
+                    <h4 class="mb-0">Traffic</h4>
+                  </div>
+                  <div>
+                    <div class="dropdown dropleft">
+                      <a class="text-muted text-decoration-none" href="#!" role="button" id="courseDropdown2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fe fe-more-vertical"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="courseDropdown2">
+                        <span class="dropdown-header">Settings</span>
+                        <a class="dropdown-item" href="#!"><i
+                            class="fe fe-external-link dropdown-item-icon "></i>Export</a>
+                        <a class="dropdown-item" href="#!"><i class="fe fe-mail dropdown-item-icon "></i>Email
+                          Report</a>
+                        <a class="dropdown-item" href="#!"><i
+                            class="fe fe-download dropdown-item-icon "></i>Download</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <div id="traffic" class="apex-charts d-flex justify-content-center"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-12 col-12 mb-4">
+              <!-- Card -->
+              <div class="card h-100">
+                <!-- Card header -->
+                <div class="card-header d-flex align-items-center
+                              justify-content-between card-header-height">
+                  <h4 class="mb-0">Popular Instructor</h4>
+                  <a href="#!" class="btn btn-outline-white btn-sm">View all</a>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <!-- List group -->
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-0 pt-0 ">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="avatar avatar-md avatar-indicators avatar-offline">
+                            <img alt="avatar" src="../assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                          </div>
+                        </div>
+                        <div class="col ml-n3">
+                          <h4 class="mb-0 h5">Rob Percival</h4>
+                          <span class="mr-2 font-size-xs">
+                            <span class="text-dark  mr-1 font-weight-semi-bold">42</span>Courses</span>
+                          <span class="mr-2 font-size-xs">
+                            <span class="text-dark  mr-1 font-weight-semi-bold">1,10,124</span>Students</span>
+                          <span class="font-size-xs">
+                            <span class="text-dark  mr-1 font-weight-semi-bold">32,000</span>
+                            Reviews
+                          </span>
+                        </div>
+                        <div class="col-auto">
+                          <span class="dropdown dropleft">
+                            <a class="text-muted text-decoration-none" href="#!" role="button" id="courseDropdown7"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <span class="dropdown-menu" aria-labelledby="courseDropdown7">
+                              <span class="dropdown-header">Settings</span>
+                              <a class="dropdown-item" href="#!"><i class="fe fe-edit dropdown-item-icon "></i>Edit</a>
+                              <a class="dropdown-item" href="#!"><i class="fe fe-trash dropdown-item-icon "></i>Remove</a>
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+
+                    </li>
+                    
+                            
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-12 col-12 mb-4">
+              <!-- Card -->
+              <div class="card h-100">
+                <!-- Card header -->
+                <div class="card-header d-flex align-items-center
+                              justify-content-between card-header-height">
+                  <h4 class="mb-0">Recent Courses</h4>
+                  <a href="#!" class="btn btn-outline-white btn-sm">View all</a>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <!-- List group flush -->
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-0 pt-0">
+                      <div class="row">
+                        <!-- Col -->
+                        <div class="col-auto">
+                          <a href="#!">
+                            <img src="../assets/images/course/course-laravel.jpg" alt=""
+                              class="img-fluid rounded img-4by3-lg" /></a>
+                        </div>
+                        <!-- Col -->
+                        <div class="col pl-0">
+                          <a href="#!">
+                            <h5 class="text-primary-hover">
+                              Revolutionize how you build the web...
+                            </h5>
+                          </a>
+                          <div class="d-flex align-items-center">
+                            <img src="../assets/images/avatar/avatar-7.jpg" alt="" class="rounded-circle avatar-xs mr-2" />
+                            <span class="font-size-xs">Brooklyn Simmons</span>
+                          </div>
+                        </div>
+                        <!-- Col auto -->
+                        <div class="col-auto">
+                          <span class="dropdown dropleft">
+                            <a class="text-muted text-decoration-none" href="#!" role="button" id="courseDropdown3"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <span class="dropdown-menu" aria-labelledby="courseDropdown3">
+                              <span class="dropdown-header">Settings</span>
+                              <a class="dropdown-item" href="#!"><i class="fe fe-edit dropdown-item-icon "></i>Edit</a>
+                              <a class="dropdown-item" href="#!"><i
+                                  class="fe fe-trash dropdown-item-icon "></i>Remove</a>
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                   
+                    
+                   
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 col-md-12 col-12 mb-4">
+              <!-- Card -->
+              <div class="card h-100">
+                <!-- Card header -->
+                <div class="card-header card-header-height d-flex align-items-center">
+                  <h4 class="mb-0">Activity
+                  </h4>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <!-- List group -->
+                  <ul class="list-group list-group-flush list-timeline-activity">
+                    <li class="list-group-item px-0 pt-0 border-0 mb-2">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="avatar avatar-md avatar-indicators avatar-online">
+                            <img alt="avatar" src="../assets/images/avatar/avatar-6.jpg" class="rounded-circle">
+                          </div>
+                        </div>
+                        <div class="col ml-n3">
+                          <h4 class="mb-0 h5">Dianna Smiley</h4>
+                          <p class="mb-1">Just buy the courses”Build React Application Tutorial”</p>
+                          <span class="font-size-xs">2m ago</span>
+                        </div>
+                      </div>
+                    </li>
+                    <!-- List group -->
+                    
+                   
+                   
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/libs/odometer/odometer.min.js' %}"></script>
+  <script src="{% static 'assets/libs/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="{% static 'assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+  <script src="{% static 'assets/libs/flatpickr/dist/flatpickr.min.js' %}"></script>
+  <script src="{% static 'assets/libs/inputmask/dist/jquery.inputmask.min.js' %}"></script>
+  <script src="{% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/libs/quill/dist/quill.min.js' %}"></script>
+  <script src="{% static 'assets/libs/file-upload-with-preview/dist/file-upload-with-preview.min.js' %}"></script>
+  <script src="{% static 'assets/libs/dragula/dist/dragula.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bs-stepper/dist/js/bs-stepper.min.js' %}"></script>
+  <script src="{% static 'assets/libs/dropzone/dist/min/dropzone.min.js' %}"></script>
+  <script src="{% static 'assets/libs/jQuery.print/jQuery.print.js' %}"></script>
+  <script src="{% static 'assets/libs/prismjs/prism.js' %}"></script>
+  <script src="{% static 'assets/libs/prismjs/components/prism-scss.min.js' %}"></script>
+  <script src="{% static 'assets/libs/@yaireo/tagify/dist/tagify.min.js' %}"></script>
+  <script src="{% static 'assets/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
+  <script src="{% static 'assets/libs/@popperjs/core/dist/umd/popper.min.js' %}"></script>
+  <script src="{% static 'assets/libs/tippy.js/dist/tippy-bundle.umd.min.js' %}"></script>
+  <script src="{% static 'assets/libs/typed.js/lib/typed.min.js' %}"></script>
+
+  <!-- clipboard -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+
+  <!-- Theme JS -->
+  <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+</body>
+
+</html>

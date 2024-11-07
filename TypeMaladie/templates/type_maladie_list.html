@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon/favicon.ico' %}">
+
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/fonts/feather/feather.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dragula/dist/dragula.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/@mdi/font/css/materialdesignicons.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/prismjs/themes/prism.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dropzone/dist/dropzone.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/@yaireo/tagify/dist/tagify.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tippy.js/dist/tippy.css' %}" rel="stylesheet">
+
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Type Maladie List</title>
+</head>
+
+<body>
+    <div id="db-wrapper">
+        {% include 'sidebar.html' %}
+        <div id="page-content">
+            <div class="header">
+                {% include 'navbar.html' %}
+            </div>
+            <div class="container-fluid p-4">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="border-bottom pb-4 mb-4 d-lg-flex align-items-center justify-content-between">
+                            <div class="mb-2 mb-lg-0">
+                                <h1 class="mb-1 h2 font-weight-bold">Type Maladies</h1>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Type Maladies</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <div>
+                                <a href="{% url 'type_maladie-create' %}" class="btn btn-primary">Add New Type Maladie</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="card rounded-lg">
+                            <div class="p-4 row">
+                                <form method="GET" action="{% url 'type_maladie_list' %}"
+                                    class="d-flex align-items-center col-12 col-md-12 col-lg-12">
+                                    <span class="position-absolute pl-3 search-icon">
+                                        <i class="fe fe-search"></i>
+                                    </span>
+                                    <input type="search" name="q" class="form-control pl-6"
+                                        placeholder="Search Type Maladies" />
+                                </form>
+                            </div>
+                            <div>
+                                <div class="tab-content" id="tabContent">
+                                    <div class="tab-pane fade show active" id="typemaladies" role="tabpanel"
+                                        aria-labelledby="maladies-tab">
+                                        <div class="table-responsive border-0 overflow-y-hidden">
+                                            <table class="table mb-0 text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="border-0 text-uppercase">Type Maladie</th>
+                                                        <th scope="col" class="border-0 text-uppercase">Description</th>
+                                                        <th scope="col" class="border-0 text-uppercase">is contagious</th>
+                                                        <th scope="col" class="border-0 text-uppercase">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for typemaladie in typemaladies %}
+                                                    <tr>
+                                                        <td class="border-top-0">
+                                                            <div class="d-lg-flex align-items-center">
+                                                                <div>
+                                                                    {% if typemaladie.image %}
+                                                                    <img src="{{ typemaladie.image.url }}" alt=""
+                                                                        class="img-4by3-lg rounded" />
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="ml-lg-3 mt-2 mt-lg-0">
+                                                                    <h4 class="mb-1 text-primary-hover">{{ typemaladie.nom }}</h4>
+                                                                    <span class="text-inherit">Published on {{ typemaladie.date_publication|date:"d F, Y" }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle border-top-0">{{ typemaladie.description }}
+                                                        </td>
+                                                        <td class="align-middle border-top-0">{{ typemaladie.is_contagious }}</td>
+                                                        </td>
+                                                        <td class="align-middle border-top-0">
+                                                            <a href="{% url 'type_maladie_update' typemaladie.id %}" class="btn btn-outline-info btn-sm">Update</a>
+                                                            <a href="{% url 'delete_type_maladie' typemaladie.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% empty %}
+                                                    <tr>
+                                                        <td colspan="5">No Type maladies available.</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-center mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                            </li>
+                                            <li class="page-item active" aria-current="page">
+                                                <a class="page-link" href="#">1</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/odometer/odometer.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'assets/libs/flatpickr/dist/flatpickr.min.js' %}"></script>
+    <script src="{% static 'assets/libs/inputmask/dist/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/libs/quill/dist/quill.min.js' %}"></script>
+    <script src="{% static 'assets/libs/file-upload-with-preview/dist/file-upload-with-preview.min.js' %}"></script>
+    <script src="{% static 'assets/libs/dragula/dist/dragula.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bs-stepper/dist/js/bs-stepper.min.js' %}"></script>
+    <script src="{% static 'assets/libs/dropzone/dist/min/dropzone.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jQuery.print/jQuery.print.js' %}"></script>
+    <script src="{% static 'assets/libs/prismjs/prism.js' %}"></script>
+    <script src="{% static 'assets/libs/prismjs/components/prism-scss.min.js' %}"></script>
+    <script src="{% static 'assets/libs/@yaireo/tagify/dist/tagify.min.js' %}"></script>
+    <script src="{% static 'assets/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/libs/@popperjs/core/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'assets/libs/tippy.js/dist/tippy-bundle.umd.min.js' %}"></script>
+    <script src="{% static 'assets/libs/typed.js/lib/typed.min.js' %}"></script>
+
+    <!-- clipboard -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+
+    <!-- Theme JS -->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href={% static 'assets/images/favicon/favicon.ico' %}>
+
+
+    <!-- Libs CSS -->
+    <link href={% static 'assets/fonts/feather/feather.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/dragula/dist/dragula.min.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/@mdi/font/css/materialdesignicons.min.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/prismjs/themes/prism.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/dropzone/dist/dropzone.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/magnific-popup/dist/magnific-popup.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css' %} rel="stylesheet">
+    <link href={% static 'assets/libs/@yaireo/tagify/dist/tagify.css' %} rel="stylesheet">
+    <link href={% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %} rel="stylesheet">
+    <link href={% static 'assets/libs/tippy.js/dist/tippy.css' %} rel="stylesheet">
+
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href={% static 'assets/css/theme.min.css' %}>
+    <title>Plant List</title>
+</head>
+
+<body>
+    <div id="db-wrapper">
+        <!-- Sidebar -->
+        {% include 'sidebarfarmer.html' %}
+
+        <!-- Page Content -->
+        <div id="page-content">
+            <div class="header">
+                <!-- Navbar -->
+                {% include 'navbar.html' %}
+            </div>
+            <!-- Container fluid -->
+            <section class="container-fluid p-4">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <!-- Page header -->
+                        <div
+                            class="border-bottom pb-3 mb-3 d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between">
+                            <div>
+                                <h1 class="mb-0 h2 fw-bold">Products</h1>
+                                <!-- Breadcrumb -->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="admin-dashboard.html">Dashboard</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="#">Ecommerce</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Products Details</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <!-- button -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- card -->
+                <div class="card">
+                    <div class="card-body p-5">
+                        <div class="row">
+                            <div class="col-xl-6 col-12">
+                                <div class="row gy-4">
+                                    <div class="col-12">
+                                        <div>
+                                            <!-- Gallery -->
+                                            <a href="../../../assets/images/ecommerce/product-slide-1.jpg"
+                                                class="glightbox" data-gallery="gallery1">
+                                                <img src="{{ plant.image.url }}" alt="image"
+                                                    class="img-fluid rounded-3 w-100" />
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-12">
+                                <div class="my-5 mx-lg-8">
+                                    <!-- heading -->
+                                    <div class="d-flex flex-column gap-2">
+                                        <h1 class="mb-0">{{plant.name}}</h1>
+                                        <div>
+                                            <!-- review -->
+                                            <span>
+                                                <span class="me-1 text-dark fw-semibold">
+                                                    4.4
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                        fill="currentColor"
+                                                        class="bi bi-star-fill text-success ms-1 align-baseline"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                                {{plant.scientific_name}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <hr class="my-3" />
+
+                                    <!-- row -->
+                                    <div class="row row flex-md-row flex-column gap-2 gap-md-0">
+                                        <!-- col -->
+                                        <div class="col-md-6">
+                                            <div class="d-grid">
+                                                <!-- btn -->
+                                                <a href="{% url 'PlantApp:predict' plant.id %}" class="btn btn-danger">
+                                                    <i class="fe fe-shopping-cart me-2"></i>
+                                                    Disease Detection
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- col -->
+
+                                    </div>
+                                    <hr class="mt-4 mb-2" />
+                                    <div class="mb-4" id="ecommerceAccordion">
+                                        <!-- List group -->
+                                        <ul class="list-group list-group-flush">
+                                            <!-- List group item -->
+                                            <li class="list-group-item px-0">
+                                                <!-- Toggle -->
+                                                <a class="d-flex align-items-center text-inherit fw-semibold mb-0"
+                                                    data-bs-toggle="collapse" href="#productDetails" role="button"
+                                                    aria-expanded="false" aria-controls="productDetails">
+                                                    <div class="me-auto">Product Details</div>
+                                                    <!-- Chevron -->
+                                                    <span class="chevron-arrow ms-4">
+                                                        <i class="fe fe-chevron-down fs-4"></i>
+                                                    </span>
+                                                </a>
+                                                <!-- Row -->
+                                                <!-- Collapse -->
+                                                <div class="collapse show" id="productDetails"
+                                                    data-bs-parent="#ecommerceAccordion">
+                                                    <div class="py-3">
+                                                        {{plant.description}}
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-2">
+                    <div class="card-title p-5"> Disease Detection </div>
+                    <div class="card-body p-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Disease Detection</th>
+                                    <th scope="col">Confidence Score</th>
+                                    <th scope="col">Date Detected</th>
+                                    <th scope="col">Notes</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for di in dis %}
+                                <tr>
+                                    <th scope="row">{{ di.id }}</th>
+                                    <td>{{ di.detected_disease }}</td>
+                                    <td>{{ di.confidence_score }}</td>
+                                    <td>{{ di.date_detected }}</td>
+                                    <td>
+                                        <div class="alert alert-danger">{{ di.notes }}</div>
+                                    </td>
+                                    <td> {% if di.demande %}
+                                        <span class="text-success">Treatment  Status :
+                                            <span class="badge badge-info"> {{di.demande.status}}</span></span>
+                                        {% else %}
+                                        <a href="{% url 'demande_create' di.id %}" class="btn btn-danger">Request
+                                            Treatment</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+    </section>
+    </div>
+    </div>
+
+
+
+    <!-- Script -->
+    <!-- Libs JS -->
+    <script src={% static 'assets/libs/jquery/dist/jquery.min.js' %}></script>
+    <script src={% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}></script>
+    <script src={% static 'assets/libs/odometer/odometer.min.js' %}></script>
+    <script src={% static 'assets/libs/jquery-slimscroll/jquery.slimscroll.min.js' %}></script>
+    <script src={% static 'assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js' %}></script>
+    <script src={% static 'assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js' %}></script>
+    <script src={% static 'assets/libs/flatpickr/dist/flatpickr.min.js' %}></script>
+    <script src={% static 'assets/libs/inputmask/dist/jquery.inputmask.min.js' %}></script>
+    <script src={% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}></script>
+    <script src={% static 'assets/libs/quill/dist/quill.min.js' %}></script>
+    <script src={% static 'assets/libs/file-upload-with-preview/dist/file-upload-with-preview.min.js' %}></script>
+    <script src={% static 'assets/libs/dragula/dist/dragula.min.js' %}></script>
+    <script src={% static 'assets/libs/bs-stepper/dist/js/bs-stepper.min.js' %}></script>
+    <script src={% static 'assets/libs/dropzone/dist/min/dropzone.min.js' %}></script>
+    <script src={% static 'assets/libs/jQuery.print/jQuery.print.js' %}></script>
+    <script src={% static 'assets/libs/prismjs/prism.js' %}></script>
+    <script src={% static 'assets/libs/prismjs/components/prism-scss.min.js' %}></script>
+    <script src={% static 'assets/libs/@yaireo/tagify/dist/tagify.min.js' %}></script>
+    <script src={% static 'assets/libs/tiny-slider/dist/min/tiny-slider.js' %}></script>
+    <script src={% static 'assets/libs/@popperjs/core/dist/umd/popper.min.js' %}></script>
+    <script src={% static 'assets/libs/tippy.js/dist/tippy-bundle.umd.min.js' %}></script>
+    <script src={% static 'assets/libs/typed.js/lib/typed.min.js' %}></script>
+
+    <!-- clipboard -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+
+    <!-- Theme JS -->
+    <script src={% static 'assets/js/theme.min.js' %}></script>
+</body>
+
+</html>

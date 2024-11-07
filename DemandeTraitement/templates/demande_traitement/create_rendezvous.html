@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un rendez-vous</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <h2>Créer un nouveau rendez-vous</h2>
+
+
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Afficher les champs du formulaire -->
+        <button type="submit">Soumettre</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialiser Flatpickr sur le champ de date
+        flatpickr(".datepicker", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            time_24hr: true,
+            locale: "fr"
+        });
+    </script>
+</body>
+</html>

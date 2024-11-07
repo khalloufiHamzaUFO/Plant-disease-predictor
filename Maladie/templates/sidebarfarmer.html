@@ -1,0 +1,45 @@
+{% load static %}
+
+<nav class="navbar-vertical navbar">
+    <div class="nav-scroller">
+      <!-- Brand logo -->
+      <a class="navbar-brand" href="{% url 'home' %}"><img
+        src="{% static 'assets/images/brand/logo/logo-inverse.svg' %}" alt="" /></a>
+      <ul class="navbar-nav flex-column" id="sideNavbar">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'dashboard_farmer' %}">
+            <i class="nav-icon fe fe-home mr-2"></i>Dashboard
+          </a>
+        </li> 
+        <!-- Nav item -->
+        <li class="nav-item">
+          <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navCourses" aria-expanded="true"
+            aria-controls="navCourses">
+            <i class="nav-icon fe fe-book mr-2"></i>Plants
+          </a>
+          <div id="navCourses" class="collapse show" data-parent="#sideNavbar">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="/plants/">All Plants
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navMaladies" aria-expanded="true"
+            aria-controls="navMaladies">
+            <i class="nav-icon fe fe-book mr-2"></i> Type Maladies
+          </a>
+          <div id="navMaladies" class="collapse show" data-parent="#sideNavbar">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'type_maladie_list_farmer' %}">All Type Maladies</a>
+              </li>
+            </ul>
+          </div>
+        </li>      
+      </ul>
+
+    </div>
+  </nav>

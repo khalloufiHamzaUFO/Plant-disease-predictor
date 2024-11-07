@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>MethodeTraitement List</title>
+</head>
+<body>
+    <div id="db-wrapper">
+        <nav class="navbar-vertical navbar">
+            <div class="nav-scroller">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="{% static 'assets/images/brand/logo/logo-inverse.svg' %}" alt="Logo" />
+                </a>
+                <ul class="navbar-nav flex-column" id="sideNavbar">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/methodes/">All Methods</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div class="header">
+                <nav class="navbar-default navbar navbar-expand-lg">
+                    <a id="nav-toggle" href="#!"><i class="fe fe-menu"></i></a>
+                </nav>
+            </div>
+
+            <div class="container-fluid p-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="border-bottom pb-4 mb-4 d-lg-flex align-items-center justify-content-between">
+                            <h1 class="h2 font-weight-bold">Methods</h1>
+                            <a href="/methodes_traitement/create/" class="btn btn-primary">Add New Method</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card rounded-lg">
+                            <div class="table-responsive border-0 overflow-y-hidden">
+                                <table class="table mb-0 text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for methode in methodes %}
+                                        <tr>
+                                            <td>{{ methode.nom }}</td>
+                                            <td>{{ methode.description }}</td>
+                                            <td>
+                                                <a href="{% url 'methode_traitement_update' methode.id %}" class="btn btn-outline-info btn-sm">Update</a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ methode.id }}">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Delete Confirmation Modal -->
+                                        <div class="modal fade" id="deleteModal{{ methode.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ methode.id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel{{ methode.id }}">Confirm Delete</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete "{{ methode.nom }}"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form method="POST" action="{% url 'methode_traitement_delete' methode.id %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="3" class="text-center">No methods available.</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+</html>

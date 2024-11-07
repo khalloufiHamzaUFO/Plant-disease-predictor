@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Mettre à Jour la Méthode</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Mettre à Jour la Méthode</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Render the form fields here -->
+            <button type="submit" class="btn btn-primary">Mettre à Jour</button>
+            <a href="{% url 'methode_traitement_list' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

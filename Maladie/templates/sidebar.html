@@ -1,0 +1,80 @@
+{% load static %}
+<nav class="navbar-vertical navbar">
+    <div class="nav-scroller">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'assets/images/brand/logo/logo-inverse.svg' %}" alt="Logo" />
+        </a>
+        <ul class="navbar-nav flex-column" id="sideNavbar">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard_admin' %}">
+                    <i class="nav-icon fe fe-home mr-2"></i>Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navTypeMaladies"
+                    aria-expanded="true" aria-controls="navTypeMaladies">
+                    <i class="nav-icon fe fe-book mr-2"></i>Types Maladies
+                </a>
+                <div id="navTypeMaladies" class="collapse show" data-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'type_maladie_list' %}">All Types Maladies</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navMaladies"
+                    aria-expanded="true" aria-controls="navMaladies">
+                    <i class="nav-icon fe fe-book mr-2"></i>Maladies
+                </a>
+                <div id="navMaladies" class="collapse show" data-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'maladie_list' %}">All Maladies</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navDemandes" aria-expanded="true"
+                    aria-controls="navDemandes">
+                    <i class="nav-icon fe fe-book mr-2"></i>Demandes de traitement
+                </a>
+                <div id="navDemandes" class="collapse show" data-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'demande_list' %}">All Demandes</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navTraitements" aria-expanded="true"
+                    aria-controls="navTraitements">
+                    <i class="nav-icon fe fe-book mr-2"></i>Traitements
+                </a>
+                <div id="navTraitements" class="collapse show" data-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'treatment_list' %}">All Traitements</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" data-toggle="collapse" data-target="#navPreventions" aria-expanded="true"
+                    aria-controls="navPreventions">
+                    <i class="nav-icon fe fe-book mr-2"></i>Preventions
+                </a>
+                <div id="navPreventions" class="collapse show" data-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'prevention_list' %}">All Preventions</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

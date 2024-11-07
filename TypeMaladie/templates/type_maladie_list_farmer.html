@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon/favicon.ico' %}">
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/fonts/feather/feather.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dragula/dist/dragula.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/@mdi/font/css/materialdesignicons.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/prismjs/themes/prism.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dropzone/dist/dropzone.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/@yaireo/tagify/dist/tagify.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tippy.js/dist/tippy.css' %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>tYPE Maladie List</title>
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+        .card img {
+            width: 100%; /* Prend toute la largeur de la carte */
+            height: 200px; /* Hauteur fixe pour toutes les images */
+            object-fit: cover; /* Assure que l'image s'adapte sans déformation */
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="db-wrapper">
+        <!-- Sidebar and navigation -->
+        {% include 'sidebarfarmer.html' %}
+
+
+        <!-- Page content -->
+        <div id="page-content">
+            <div class="header">
+                {% include 'navbar.html' %}
+            </div>
+
+            <div class="container-fluid p-4">
+                <!-- Page header -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="border-bottom pb-4 mb-4 d-lg-flex align-items-center justify-content-between">
+                            <div class="mb-2 mb-lg-0">
+                                <h1 class="mb-1 h2 font-weight-bold">Types Maladies</h1>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Types Maladies</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maladie list and search bar -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="card rounded-lg">
+                            <div class="p-4 row">
+                                <form method="GET" action="{% url 'type_maladie_list' %}"
+                                    class="d-flex align-items-center col-12 col-md-12 col-lg-12">
+                                    <span class="position-absolute pl-3 search-icon">
+                                        <i class="fe fe-search"></i>
+                                    </span>
+                                    <input type="search" name="q" class="form-control pl-6"
+                                        placeholder="Search Maladies" />
+                                </form>
+                            </div>
+
+                            <!-- Maladies -->
+                            <div class="row p-4">
+                                {% for typemaladie in typemaladies %}
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        {% if typemaladie.image %}
+                                        <a href="{% url 'maladie_list_farmer' typemaladie.id %}">
+
+                                        <img src="{{ typemaladie.image.url }}" alt="{{ typemaladie.nom }}" class="img-fluid"
+                                             />
+                                            </a>
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary text-uppercase">Name : {{ typemaladie.nom }}</h5>
+                                            <p class="card-text text-uppercase">is_contagious : {{ typemaladie.is_contagious }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% empty %}
+                                <div class="col-12">
+                                    <div class="alert alert-warning">No maladies available.</div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="card-footer">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/odometer/odometer.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'assets/libs/flatpickr/dist/flatpickr.min.js' %}"></script>
+    <script src="{% static 'assets/libs/inputmask/dist/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/libs/quill/dist/quill.min.js' %}"></script>
+    <script src="{% static 'assets/libs/file-upload-with-preview/dist/file-upload-with-preview.min.js' %}"></script>
+    <script src="{% static 'assets/libs/dragula/dist/dragula.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+
+</html>

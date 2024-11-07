@@ -1,0 +1,46 @@
+<!-- templates/demande_traitement/create.html -->
+<!DOCTYPE html>
+<html lang="fr">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une demande de traitement</title>
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon/favicon.ico' %}">
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/fonts/feather/feather.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Card -->
+        <div class="card mb-3">
+            <div class="card-header border-bottom px-4 py-3">
+                <h4 class="mb-0">Créer une nouvelle demande de traitement</h4>
+            </div>
+            <pre> Hello mate ! you will send a new demande for the Expret to help you on this desease <strong> {{disease.detected_disease}} </strong> </pre>
+            <!-- Card body -->
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Utilisation de form.as_p pour afficher les champs -->
+                    {{ form.as_p }}
+
+                    <!-- Bouton de soumission -->
+                    <button type="submit" class="btn btn-primary">Soumettre</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libs JS -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+</html>

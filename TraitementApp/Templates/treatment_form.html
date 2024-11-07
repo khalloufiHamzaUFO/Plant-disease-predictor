@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" type="image/x-icon" href={% static 'assets/images/favicon/favicon.ico' %}>
+
+    <!-- Libs CSS -->
+    <link href={% static 'assets/fonts/feather/feather.css' %} rel="stylesheet" />
+    <link href={% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %} rel="stylesheet">
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href={% static 'assets/css/theme.min.css' %}>
+    <title>Create Treatment</title>
+    <style>
+        .dropdown-menu {
+            max-height: 200px; /* Set a max height for the dropdown */
+            overflow-y: auto; /* Enable scrolling */
+            background-color: #f8f9fa; /* Light background */
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .form-check {
+            margin-bottom: 0.5rem; /* Space between checkboxes */
+        }
+
+        .form-check-input:checked {
+            background-color: #0d6efd; /* Change checkmark color */
+            border-color: #0d6efd; /* Change border color */
+        }
+
+        .btn-dropdown {
+            width: 100%; /* Make button full width */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Card -->
+        <div class="card mb-3">
+            <div class="card-header border-bottom px-4 py-3">
+                <h4 class="mb-0">Create New Treatment</h4>
+            </div>
+
+            <!-- Card body -->
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Treatment Name -->
+                    <div class="form-group mb-3">
+                        <label for="id_name" class="form-label">Treatment Name:</label>
+                        {{ form.name }}
+                        <small class="form-text text-muted">Please provide a descriptive name for the treatment.</small>
+                    </div>
+
+                    <!-- Treatment Description -->
+                    <div class="form-group mb-3">
+                        <label for="id_description" class="form-label">Treatment Description:</label>
+                        {{ form.description }}
+                        <small class="form-text text-muted">Provide a brief summary of the treatment.</small>
+                    </div>
+
+                    <!-- Date Applied -->
+                    <div class="form-group mb-3">
+                        <label for="id_date_applied" class="form-label">Date Applied:</label>
+                        {{ form.date_applied }}
+                        <small class="form-text text-muted">Enter the date the treatment was applied.</small>
+                    </div>
+
+                    <!-- Success Rate -->
+                    <div class="form-group mb-3">
+                        <label for="id_success_rate" class="form-label">Success Rate (%):</label>
+                        {{ form.success_rate }}
+                        <small class="form-text text-muted">Enter the success rate of the treatment.</small>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="form-group mb-3">
+                        <label for="id_notes" class="form-label">Notes:</label>
+                        {{ form.notes }}
+                        <small class="form-text text-muted">Any additional notes about the treatment.</small>
+                    </div>
+
+                    <!-- Methodes de Traitement -->
+                    <div class="form-group mb-3">
+                        <label for="id_methodes_traitement" class="form-label">Methodes de Traitement:</label>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select Methodes
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="all" id="select-all" onclick="toggleAll(this)" />
+                                    <label class="form-check-label" for="select-all">Select All</label>
+                                </div>
+                                {% for methode in form.methodes_traitement %}
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="{{ methode.choice_value }}" id="methode{{ forloop.counter }}" name="methodes_traitement" onclick="updateButtonText()" />
+                                        <label class="form-check-label" for="methode{{ forloop.counter }}">
+                                            {{ methode.choice_label }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Select one or more methods of treatment.</small>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Create Treatment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <!-- Libs JS -->
+    <script src={% static 'assets/libs/jquery/dist/jquery.min.js' %}></script>
+    <script src={% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}></script>
+
+    <!-- Theme JS -->
+    <script src={% static 'assets/js/theme.min.js' %}></script>
+
+    <script>
+        function toggleAll(selectAllCheckbox) {
+            const checkboxes = document.querySelectorAll('.form-check-input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.id !== 'select-all') { 
+                    checkbox.checked = selectAllCheckbox.checked;
+                }
+            });
+            updateButtonText(); 
+        }
+
+        function updateButtonText() {
+            const checkboxes = document.querySelectorAll('.form-check-input[type="checkbox"]:not(#select-all)');
+            const selectedLabels = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const label = checkbox.nextElementSibling.textContent.trim();
+                    selectedLabels.push(label);
+                }
+            });
+
+            const button = document.getElementById('dropdownMenuButton');
+            if (selectedLabels.length > 0) {
+                button.textContent = selectedLabels.join(', '); 
+            } else {
+                button.textContent = 'Select Methodes'; 
+            }
+        }
+
+        $(document).ready(function () {
+            $(document).click(function (e) {
+                if (!$(e.target).closest('.dropdown').length) {
+                    $('.dropdown-menu').hide();
+                }
+            });
+
+            $('#dropdownMenuButton').click(function () {
+                $('.dropdown-menu').toggle();
+            });
+        });
+    </script>
+</body>
+</html>

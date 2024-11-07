@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Create MethodeTraitement</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card mb-3">
+            <div class="card-header border-bottom px-4 py-3">
+                <h4 class="mb-0">Create New Method</h4>
+            </div>
+
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Name Field -->
+                    <div class="form-group mb-3">
+                        <label for="id_nom">Method Name:</label>
+                        {{ form.nom }}
+                        <small class="form-text text-muted">Provide the name for the method.</small>
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group mb-3">
+                        <label for="id_description">Method Description:</label>
+                        {{ form.description }}
+                        <small class="form-text text-muted">Provide a short description of the method.</small>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Create Method</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Image Upload</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Card -->
+        <div class="card mb-3">
+            <div class="card-header border-bottom px-4 py-3">
+                <h4 class="mb-0">Predict Plant from Image</h4>
+            </div>
+
+            <!-- Card body -->
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <!-- Image Upload -->
+                    <div class="form-group mb-3">
+                        <label for="id_image" class="form-label">Upload Image</label>
+                        {{ form.image }}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                {% if success %}
+                <div class="alert alert-success mt-3">
+                    Image successfully uploaded and processed!
+                </div>
+                {% endif %}
+
+                {% if result %}
+                <div class="mt-3">
+                    <h5>Prediction Result:</h5>
+                    
+                    <pre>{{ result|safe }}</pre>
+                </div>
+                {% endif %}
+                {% if title  %}
+                <div class="mt-3">
+                    <h5>Prediction Title:</h5>
+                    
+                    <p>{{ title|safe }}</p>
+                    <p>{{ description }}</p>
+
+                    <div class="alert alert-danger">
+                      <strong>  Suggestions </strong>: {{prevent}}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>

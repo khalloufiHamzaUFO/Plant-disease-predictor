@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django specific
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.sqlite3-journal
+db.sqlite3
+db.sqlite3-journal
+
+# Local Django settings (if any)
+local_settings.py
+
+# Media files
+/media/
+
+# Static files
+/static/
+
+# Environment variables file
+.env
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.VENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VS Code settings
+.vscode/
+
+# MacOS files
+.DS_Store
+
+# PyCharm settings
+.idea/
+
+# Node modules (if using npm/yarn for frontend)
+node_modules/
+
+# Coverage reports
+htmlcov/
+*.cover
+.coverage
+.cache
+.nosetests
+coverage.xml
+*.coveragerc
+*.coverage.*
+
+# Testing results
+.tox/
+.pytest_cache/
+.test/
+reports/
+junitxml/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pip

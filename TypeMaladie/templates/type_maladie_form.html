@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon/favicon.ico' %}">
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/fonts/feather/feather.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/dragula/dist/dragula.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/@mdi/font/css/materialdesignicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/prismjs/themes/prism.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/dropzone/dist/dropzone.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/@yaireo/tagify/dist/tagify.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tippy.js/dist/tippy.css' %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Application de Type Maladie</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Card -->
+        <div class="card mb-3">
+            <div class="card-header border-bottom px-4 py-3">
+                <h4 class="mb-0">Formulaire d'Application de Type Maladie</h4>
+            </div>
+
+            <!-- Card body -->
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- Image -->
+                    <div class="form-group mb-3">
+                        <label for="id_image" class="form-label">Image de la maladie</label>
+                        {{ form.image }} <!-- Utilisation du champ image du formulaire -->
+                    </div>
+                    <!-- Nom de la maladie -->
+                    <div class="form-group mb-3">
+                        <label for="id_nom" class="form-label">Nom de la Type maladie</label>
+                        {{ form.nom }} <!-- Utilisation du champ nom du formulaire -->
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group mb-3">
+                        <label for="id_description" class="form-label">Description de la Type maladie</label>
+                        {{ form.description }} <!-- Utilisation du champ description du formulaire -->
+                    </div>
+
+
+
+                    <!-- Causes -->
+                    <div class="form-group mb-3">
+                        <label for="id_causes" class="form-label">is_contagious</label>
+                        {{ form.is_contagious }} <!-- Utilisation du champ causes du formulaire -->
+                    </div>
+                    <button type="submit" class="btn btn-primary">Soumettre l'Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libs JS -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/odometer/odometer.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'assets/libs/flatpickr/dist/flatpickr.min.js' %}"></script>
+    <script src="{% static 'assets/libs/inputmask/dist/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/libs/quill/dist/quill.min.js' %}"></script>
+    <script src="{% static 'assets/libs/file-upload-with-preview/dist/file-upload-with-preview.min.js' %}"></script>
+    <script src="{% static 'assets/libs/dragula/dist/dragula.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bs-stepper/dist/js/bs-stepper.min.js' %}"></script>
+    <script src="{% static 'assets/libs/dropzone/dist/min/dropzone.min.js' %}"></script>
+    <script src="{% static 'assets/libs/jQuery.print/jQuery.print.js' %}"></script>
+    <script src="{% static 'assets/libs/prismjs/prism.js' %}"></script>
+    <script src="{% static 'assets/libs/prismjs/components/prism-scss.min.js' %}"></script>
+    <script src="{% static 'assets/libs/@yaireo/tagify/dist/tagify.min.js' %}"></script>
+    <script src="{% static 'assets/libs/tiny-slider/dist/min/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/libs/@popperjs/core/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'assets/libs/tippy.js/dist/tippy-bundle.umd.min.js' %}"></script>
+    <script src="{% static 'assets/libs/typed.js/lib/typed.min.js' %}"></script>
+
+    <!-- Theme JS -->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+
+</html>

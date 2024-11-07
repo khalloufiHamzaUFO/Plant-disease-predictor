@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon/favicon.ico' %}">
+
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/fonts/feather/feather.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dragula/dist/dragula.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/@mdi/font/css/materialdesignicons.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/prismjs/themes/prism.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/dropzone/dist/dropzone.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/@yaireo/tagify/dist/tagify.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/libs/tippy.js/dist/tippy.css' %}" rel="stylesheet">
+
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Treatment List</title>
+</head>
+<body>
+    <div id="db-wrapper">
+        <!-- Sidebar -->
+        {% include 'sidebar.html' %}
+
+        <!-- Page Content -->
+        <div id="page-content">
+            <div class="header">
+                {% include 'navbar.html' %}
+            </div>
+
+            <div class="container-fluid p-4">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="border-bottom pb-4 mb-4 d-lg-flex align-items-center justify-content-between">
+                            <div class="mb-2 mb-lg-0">
+                                <h1 class="mb-1 h2 font-weight-bold">Treatments</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="card rounded-lg">
+                            <div class="p-4 row">
+                                <form class="d-flex align-items-center col-12">
+                                    <span class="position-absolute pl-3 search-icon">
+                                        <i class="fe fe-search"></i>
+                                    </span>
+                                    <input type="search" class="form-control pl-6" placeholder="Search Treatment" />
+                                </form>
+                            </div>
+                            <div>
+                                <div class="table-responsive border-0 overflow-y-hidden">
+                                    <table class="table mb-0 text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="border-0 text-uppercase">Treatment Name</th>
+                                                <th scope="col" class="border-0 text-uppercase">Description</th>
+                                                <th scope="col" class="border-0 text-uppercase">Date Applied</th>
+                                                <th scope="col" class="border-0 text-uppercase">Success Rate (%)</th>
+                                                <th scope="col" class="border-0 text-uppercase">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for treatment in treatments %}
+                                            <tr>
+                                                <td class="border-top-0">{{ treatment.name }}</td>
+                                                <td class="align-middle border-top-0">{{ treatment.description }}</td>
+                                                <td class="align-middle border-top-0">{{ treatment.date_applied }}</td>
+                                                <td class="align-middle border-top-0">{{ treatment.success_rate }}</td>
+                                                <td class="align-middle border-top-0">
+                                                    <a href="{% url 'treatment-detail' treatment.id %}" class="btn btn-outline-secondary btn-sm">Details</a>
+                                                    <a href="{% url 'treatment-update' treatment.id %}" class="btn btn-outline-info btn-sm">Update</a>
+                                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ treatment.id }}">
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Delete Confirmation Modal -->
+                                            <div class="modal fade" id="deleteModal{{ treatment.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ treatment.id }}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel{{ treatment.id }}">Confirm Delete</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete "{{ treatment.name }}"?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form method="POST" action="{% url 'treatment-delete' treatment.id %}">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% empty %}
+                                            <tr>
+                                                <td colspan="5" class="text-center">No treatments available.</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+</html>

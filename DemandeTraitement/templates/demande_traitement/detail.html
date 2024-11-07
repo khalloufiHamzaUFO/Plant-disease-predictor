@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de la Demande de Traitement</title>
+</head>
+<body>
+    <h2>Détails de la Demande de Traitement</h2>
+    <p><strong>Plante:</strong> {{ object.plant }}</p>
+    <p><strong>Description:</strong> {{ object.description }}</p>
+    <p><strong>Date de Demande:</strong> {{ object.date_demande|date:"d/m/Y H:i" }}</p>
+    <p><strong>Statut:</strong> {{ object.status }}</p>
+
+    <h3>Rendez-vous associés</h3>
+    <ul>
+        {% for rendezvous in rendezvous_list %}
+            <li>
+                <strong>Date:</strong> {{ rendezvous.date|date:"d/m/Y H:i" }}<br>
+                <strong>Notes:</strong> {{ rendezvous.notes }}
+            </li>
+        {% empty %}
+            <li>Aucun rendez-vous associé.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'demande_list' %}">Retour à la liste des demandes</a>
+</body>
+</html>
